@@ -10,8 +10,8 @@ const MyPosts = () => {
   ]
 
   let postsElements = posts
-  .map (post => <Post message post={post.post} id={post.id} 
-    likesCount={post.LikesCount} dislikesCount={post.DislikesCount}/>)
+    .map(post => <Post message post={post.post} id={post.id}
+      likesCount={post.LikesCount} dislikesCount={post.DislikesCount} />)
 
   return (
     <div className={classes.postsBlock}>
