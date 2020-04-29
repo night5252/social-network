@@ -1,6 +1,6 @@
-import React from 'react';
-import classes from './MyPosts.module.css';
-import Post from './Post/Post';
+import React from 'react'
+import classes from './MyPosts.module.css'
+import Post from './Post/Post'
 
 const MyPosts = (props) => {
 
@@ -8,16 +8,12 @@ const MyPosts = (props) => {
     .map(post => <Post posts post={post.post} id={post.id}
       likesCount={post.LikesCount} dislikesCount={post.DislikesCount} />)
 
-  let newPostElement = React.createRef();
+  let newPostElement = React.createRef()
 
   let addPost = () => {
-    let text = newPostElement.current.value;
-    alert(text)
-  }
-
-  let removePost = () => {
-    let text = newPostElement.current.value;
-    alert(text)
+    let text = newPostElement.current.value
+    props.addPost(text)
+    newPostElement.current.value = ''
   }
 
   return (
@@ -29,7 +25,6 @@ const MyPosts = (props) => {
         </div>
         <div>
           <button onClick={addPost}>Add post</button>
-          <button onClick={removePost}>Remove post</button>
         </div>
       </div>
       <div className={classes.posts}>
@@ -39,4 +34,4 @@ const MyPosts = (props) => {
   )
 }
 
-export default MyPosts;
+export default MyPosts
