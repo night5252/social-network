@@ -1,13 +1,13 @@
-import React from 'react';
-import './App.css';
-import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
-import Dialogs from './components/Dialogs/Dialogs';
-import News from './components/News/News';
-import { Route } from 'react-router-dom';
-import Musice from './components/Musice/Musice';
-import Settings from './components/Settings/Settings';
+import React from 'react'
+import './App.css'
+import Header from './components/Header/Header'
+import Navbar from './components/Navbar/Navbar'
+import Profile from './components/Profile/Profile'
+import Dialogs from './components/Dialogs/Dialogs'
+import News from './components/News/News'
+import { Route } from 'react-router-dom'
+import Musice from './components/Musice/Musice'
+import Settings from './components/Settings/Settings'
 
 
 const App = (props) => {
@@ -16,10 +16,11 @@ const App = (props) => {
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/Profile' 
-        render={() => <Profile 
-        state={props.state.profilePage} 
-        addPost={props.addPost}/>} />
+        <Route path='/Profile'
+          render={() => <Profile
+            state={props.state.profilePage}
+            updateNewPostText={props.updateNewPostText}
+            addPost={props.addPost} />} />
         <Route path='/Dialogs' render={() =>
           <Dialogs state={props.state.messagesPage} />} />
         <Route path='/News' render={() => <News />} />
@@ -27,7 +28,7 @@ const App = (props) => {
         <Route path='/Settings' render={() => <Settings />} />
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
