@@ -1,4 +1,6 @@
-import { rerenderEtireTree } from "../render"
+let rerenderEtireTree = () => {
+    console.log('State changed')
+}
 
 let state = {
 
@@ -28,7 +30,9 @@ let state = {
     }
 }
 
-export let addPost = () => {
+window.state = state
+
+export const addPost = () => {
     let newPost = {
         id: 2,
         post: state.profilePage.newPostText,
@@ -40,8 +44,13 @@ export let addPost = () => {
     rerenderEtireTree(state)
 }
 
-export let updateNewPostText = (newText) => {
-        state.profilePage.newPostText  = newText 
-        rerenderEtireTree(state)
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText
+    rerenderEtireTree(state)
 }
+
+export const subscribe = (observer) => {
+    rerenderEtireTree = observer
+}
+
 export default state
