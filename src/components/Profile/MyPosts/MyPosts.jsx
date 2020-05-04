@@ -3,18 +3,19 @@ import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
 const MyPosts = (props) => {
-
-  let postsElements = props.posts
-    .map(post => <Post posts post={post.post} id={post.id}
+  let postsElements = 
+  props.posts.map(post => <Post post={post.post} id={post.id}
       likesCount={post.LikesCount} dislikesCount={post.DislikesCount} />)
 
   let newPostElement = React.createRef()
 
   let addPost = () => {
-    props.addPost()
+      props.dispatch({type: 'ADD-POST'})
   }
   let onPostChage = () => {
-    props.updateNewPostText()
+    let text =  newPostElement.current.value
+    let action = {type: 'UPDATE-NEW-POST-TEXT', newText: text}
+    props.dispatch(action)
   }
 
   return (

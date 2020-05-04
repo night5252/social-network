@@ -9,7 +9,6 @@ import { Route } from 'react-router-dom'
 import Musice from './components/Musice/Musice'
 import Settings from './components/Settings/Settings'
 
-
 const App = (props) => {
   return (
     <div className='app-wrapper'>
@@ -17,10 +16,9 @@ const App = (props) => {
       <Navbar />
       <div className='app-wrapper-content'>
         <Route path='/Profile'
-          render={() => <Profile
+          render={ () => <Profile
             state={props.state.profilePage}
-            updateNewPostText={props.updateNewPostText}
-            addPost={props.addPost} />} />
+            dispatch={props.dispatch} />} />
         <Route path='/Dialogs' render={() =>
           <Dialogs state={props.state.messagesPage} />} />
         <Route path='/News' render={() => <News />} />
