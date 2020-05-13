@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../Redux/state'
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../Redux/ProfileReducer'
 
 const MyPosts = (props) => {
   let postsElements =
@@ -24,8 +24,8 @@ const MyPosts = (props) => {
       <h3>My posts</h3>
       <div>
         <div>
-          <textarea onChange={onPostChange} ref={newPostElement}
-            value={props.newPostText} />
+          <textarea placeholder='Enter your post' onChange={onPostChange} 
+          ref={newPostElement} value={props.newPostText} />
         </div>
         <div>
           <button onClick={addPost}>Add post</button>

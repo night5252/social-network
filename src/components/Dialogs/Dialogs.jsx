@@ -1,8 +1,8 @@
-import React from 'react';
-import classes from './Dialogs.module.css';
-import DialogItem from './DialogItem/DialogItem';
-import Message from './Message/Message';
-import { updateNewMessageTextActionCreator, sendMessageActionCreator } from '../../Redux/state';
+import React from 'react'
+import classes from './Dialogs.module.css'
+import DialogItem from './DialogItem/DialogItem'
+import Message from './Message/Message'
+import { updateNewMessageTextActionCreator, sendMessageActionCreator } from '../../Redux/DialogsReducer'
 
 const Dialogs = (props) => {
     let state = props.store.getState().messagesPage
@@ -36,4 +36,4 @@ const Dialogs = (props) => {
     )
 }
 
-export default Dialogs;
+export default Dialogs
