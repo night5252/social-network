@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
-import store from './Redux/state'
+import store from './Redux/storeRedux'
 
 let callSubscriber = (state) => {
     ReactDOM.render(
@@ -21,7 +21,10 @@ let callSubscriber = (state) => {
 
 callSubscriber(store.getState())
 
-store.subscribe(callSubscriber)
+store.subscribe(() => {
+    let state = store.getState()
+    callSubscriber(state)
+})
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
