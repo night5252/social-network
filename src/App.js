@@ -14,37 +14,44 @@ import { connect } from 'react-redux'
 import { initializeApp } from './Redux/app-reducer'
 import { compose } from 'redux'
 import Preloader from './components/common/Preloader/Preloader'
+import { BrowserRouter } from 'react-router-dom'
+import store from './Redux/StoreRedux'
+import { Provider } from 'react-redux'
 
 class App extends Component {
   componentDidMount() {
     this.props.initializeApp()
   }
   render() {
-if(!this.props.initialized) {
-    return <Preloader />
-}
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
     return (
-      <div className='app-wrapper' >
-        <HeaderContainer />
-        <Navbar />
-        <div className='app-wrapper-content'>
-          <Route path='/profile/:userId?' render={() =>
-            <ProfileContainer />} />
-          <Route path='/Dialogs' render={() =>
-            <DialogsContainer />} />
-          <Route path='/Users' render={() =>
-            <UsersContainer />} />
-          <Route path='/News' render={() => <News />} />
-          <Route path='/Musice' render={() => <Musice />} />
-          <Route path='/Settings' render={() => <Settings />} />
-          <Route path='/Login' render={() => <LoginPage />} />
-        </div>
-      </div>
+      <BrowserRouter>
+        <Provider store={store}>
+          <div className='app-wrapper' >
+            <HeaderContainer />
+            <Navbar />
+            <div className='app-wrapper-content'>
+              <Route path='/profile/:userId?' render={() =>
+                <ProfileContainer />} />
+              <Route path='/Dialogs' render={() =>
+                <DialogsContainer />} />
+              <Route path='/Users' render={() =>
+                <UsersContainer />} />
+              <Route path='/News' render={() => <News />} />
+              <Route path='/Musice' render={() => <Musice />} />
+              <Route path='/Settings' render={() => <Settings />} />
+              <Route path='/Login' render={() => <LoginPage />} />
+            </div>
+          </div>
+        </Provider>
+      </BrowserRouter>
     )
   }
 }
 
-const mapStateToProps = (state) =>({
+const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
