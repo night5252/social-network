@@ -5,9 +5,7 @@ import News from './components/News/News'
 import { Route, withRouter } from 'react-router-dom'
 import Musice from './components/Musice/Musice'
 import Settings from './components/Settings/Settings'
-import DialogsContainer from './components/Dialogs/DialogsContainer'
 import UsersContainer from './components/Users/UsersContainer'
-import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
 import LoginPage from './components/Login/Login'
 import { connect } from 'react-redux'
@@ -17,6 +15,10 @@ import Preloader from './components/common/Preloader/Preloader'
 import { BrowserRouter } from 'react-router-dom'
 import store from './Redux/StoreRedux'
 import { Provider } from 'react-redux'
+import { withSuspense } from './hoc/withSuspense'
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'))
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'))
 
 class App extends Component {
   componentDidMount() {
@@ -31,10 +33,10 @@ class App extends Component {
         <HeaderContainer />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/profile/:userId?' render={() =>
-            <ProfileContainer />} />
-          <Route path='/Dialogs' render={() =>
-            <DialogsContainer />} />
+          <Route path='/profile/:userId?'
+            render={withSuspense(ProfileContainer)} />
+          <Route path='/Dialogs'
+            render={withSuspense(DialogsContainer)} />
           <Route path='/Users' render={() =>
             <UsersContainer />} />
           <Route path='/News' render={() => <News />} />
@@ -57,10 +59,10 @@ let AppContainer = compose(
 
 const MainJsApp = (props) => {
   return <BrowserRouter>
-            <Provider store={store}>
-                <AppContainer />
-            </Provider>
-        </BrowserRouter>
-}  
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
+  </BrowserRouter>
+}
 
 export default MainJsApp
